@@ -1,0 +1,12 @@
+{
+    "products": [
+      { "id": 1, "name": "json-server", "price":1 ,"description":"good"},
+      { "id": 2, "name": "json-server", "price": 1,"description":"good" },
+      { "id": 3, "name": "json-server", "price": 1,"description":"good" },
+      { "id": 4, "name": "json-server", "price": 1,"description":"good" },
+      { "id": 5, "name": "json-server", "price": 1,"description":"good" }
+    ],
+    "categories": [
+      { "id": 1, "body": "some comment", "postId": 1 }
+    ]
+  }
