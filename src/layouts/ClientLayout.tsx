@@ -1,10 +1,10 @@
 import { Header,Footer } from "../components"
 import {Outlet} from 'react-router-dom'
-const ClientLayout = ()=>{
+const ClientLayout = ({isLogin ,user,logOut}:{isLogin : boolean,user:object,logOut:any})=>{
 
     return (
         <div className="container-fluid">
-        <Header/>
+        <Header logOut={logOut} user={user} isLogin={isLogin}/>
         <Outlet/>
         <Footer/>
         </div>

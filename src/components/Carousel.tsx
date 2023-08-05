@@ -10,7 +10,7 @@ function ControlledCarousel() {
   };
 
   return (
-    <Carousel activeIndex={index} onSelect={handleSelect} style={{height:"800px"}}>
+    <Carousel activeIndex={index} onSelect={handleSelect} style={{height:"90%"}}>
       <Carousel.Item>   
         {/* <ExampleCarouselImage text="First slide" /> */}
         <img src='https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg' style={{width : "100%"}}/>

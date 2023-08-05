@@ -2,6 +2,7 @@ interface Product {
     id ?: string | number,
     name : string,
     price : number,
-    description : string
+    description : string,
+    image : string
 }
 export default Product

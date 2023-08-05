@@ -25,10 +25,10 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
+  
   place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  
+  
 }
 
 h1 {
@@ -69,4 +69,33 @@ button:focus-visible {
 }
 .bg-blue{
   background-color: #f0eaea;
+}
+.box-shadow {
+  box-shadow: 0 1px 10px 1px  rgb(231, 230, 230) !important;
+}
+.price-text{
+  color: red;
+  
+}
+.bg-loading {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.form-auth{
+  background-color: rgb(253, 253, 253);
+  padding-right: 30px;
+  padding-top: 25px;
+  padding-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  box-shadow: 0 1px 10px rgb(211, 211, 211);
+  margin: 30px 0px;
+  padding-top: 40px;
+}
+.full-height {
+  height: 100vh;
 }

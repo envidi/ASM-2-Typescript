@@ -1,6 +1,10 @@
 
 
+
 const api_url = 'http://localhost:3000/products';
+const currentData = 'http://localhost:3000/products?_limit=4';
+const api_signup = 'http://localhost:3000/users'
+const api_signin = 'http://localhost:3000/signin'
 
 const fetchApi =async (api: URL)=>{
     try {
@@ -21,4 +25,17 @@ const getData =async (api:URL)=>{
     console.log(error)
    }
 }
-export { fetchApi ,getData,api_url}
+
+const postMethod = (api:any,product:any,callback:any)=>{
+    const options = {
+        method : 'POST',
+        headers : {
+            'Content-Type': 'application/json'
+        },
+        body : JSON.stringify(product)
+    }
+    fetch(api,options)
+    .then(res=>res.json())
+    .then(callback)
+}
+export { fetchApi ,getData,api_url,currentData,api_signup,api_signin,postMethod}

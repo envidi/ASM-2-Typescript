@@ -1,0 +1,8 @@
+.item-hover-admin:hover{
+    cursor: pointer;
+    background-color: rgb(0, 177, 247);
+    color: white ;
+}
+.sidebar{
+    background-color: #4e73df;
+}

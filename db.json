@@ -1,12 +1,88 @@
 {
-    "products": [
-      { "id": 1, "name": "json-server", "price":1 ,"description":"good"},
-      { "id": 2, "name": "json-server", "price": 1,"description":"good" },
-      { "id": 3, "name": "json-server", "price": 1,"description":"good" },
-      { "id": 4, "name": "json-server", "price": 1,"description":"good" },
-      { "id": 5, "name": "json-server", "price": 1,"description":"good" }
-    ],
-    "categories": [
-      { "id": 1, "body": "some comment", "postId": 1 }
-    ]
-  }
+  "products": [
+    {
+      "id": 1,
+      "name": "Laptop MSI GF63 Thin 11SC 664VN",
+      "price": 14990000,
+      "description": "good",
+      "image": "https://cdn.ankhang.vn/media/product/250_22666_laptop_msi_cyborg_15_a12ve_240vn_000.jpg",
+      "category_id": 1
+    },
+    {
+      "id": 2,
+      "name": "Laptop MSI Cyborg 15 A12VE 240VN",
+      "price": 25490000,
+      "description": "good",
+      "image": "https://cdn.ankhang.vn/media/product/250_21221_laptop_msi_gf63_thin_11sc_664vn_00.jpg",
+      "category_id": 1
+    },
+    {
+      "id": 3,
+      "name": "Laptop MSI Cyborg 15 A12VE 240VN",
+      "price": 39390000,
+      "description": "good",
+      "image": "https://cdn.ankhang.vn/media/product/250_23738_laptop_asus_tuf_gaming_f15_fx507vv4_lp382w_000.jpg",
+      "category_id": 1
+    },
+    {
+      "id": 4,
+      "name": "Laptop MSI Cyborg 15 A12VE 240VN",
+      "price": 24090000,
+      "description": "good",
+      "image": "https://cdn.ankhang.vn/media/product/250_21291_fx507zc_hn124w_2.jpg",
+      "category_id": 1
+    },
+    {
+      "id": 5,
+      "name": "Laptop MSI Cyborg 15 A12VE 240VN",
+      "price": 17990000,
+      "description": "good",
+      "image": "https://cdn.ankhang.vn/media/product/250_21447_fx506hc_hn144w_12.jpg",
+      "category_id": 1
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "name": "ASUS"
+    },
+    {
+      "id": 2,
+      "name": "HP"
+    }
+  ],
+  "users": [
+    {
+      "email": "duc123@gmail.com",
+      "password": "$2a$10$KzqFsS0Bhw1R6mreuxL1uunOj0WrIw1l0MHPq07AR6XpuzP7LAk0e",
+      "id": 1
+    },
+    {
+      "email": "re123@gmail.com",
+      "password": "$2a$10$4AuBOMCpPzCLwDcFcv.6feVWtWFxh1ORdaYg5nbgzRjeDs1C.RENa",
+      "username": "qwewe",
+      "confirm": "12345678",
+      "remember": true,
+      "id": 2
+    },
+    {
+      "email": "qwer123@gmail.com",
+      "password": "$2a$10$Mkfm6kKG6mKe1VWfdJecluJVhyV3Eaf5Iww31P5AAE55nohiNN.Hu",
+      "username": "qwert",
+      "confirm": "12345678",
+      "remember": true,
+      "id": 3
+    },
+    {
+      "email": "duc1234@gmail.com",
+      "password": "$2a$10$DYicPRMQQs5zdW7SRj15N.p3M0UQLYTcbkzCziUnhLYhIY8cZzj7O",
+      "id": 4
+    },
+    {
+      "email": "duc12345@gmail.com",
+      "password": "$2a$10$RK/KZDtPb6/m7Hofb7tctudlZOgtveWDMwHtB3A9R834P5UVla3cq",
+      "username": "duc",
+      "id": 5
+    }
+  ]
+}
