@@ -1,34 +1,20 @@
 import {  useEffect,useState } from 'react'
-import { Button as ButtonAnt, Form, Input,  Select, } from 'antd';
+import { Button as ButtonAnt, Form, Input, } from 'antd';
 import '../../../index.css'
 import { api_cate, api_url, getData, postMethod } from '../../../ultilities';
-import checkPrice from '../../../AntdComponents/CheckPrice';
-import PriceInput from '../../../AntdComponents/PriceInput';
+
 import Button  from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { Link } from 'react-router-dom';
 
 type FieldType = {
   name?: string;
-  price?: number;
-  description?: string;
-  image?: string;
-  category_id ?: number
+  
 
 };
 
-function AddProduct({handleAddProduct}:{handleAddProduct :Function}) {
-
-  const [cate,setCate] = useState([])
-
-  useEffect(()=>{
-    const handleUrl = new URL(api_cate)
-    getData(handleUrl).then((data:any)=>{
-      setCate(data)
-            
-    })
-  },[])
-
+function AddCate({handleAddProduct}:{handleAddProduct :Function}) {
+   
 
   const [contentModal,setContentModal] = useState<{textStatus:string, titleModal: string; descModal: string }>({
     textStatus : 'text-danger',
@@ -42,13 +28,13 @@ function AddProduct({handleAddProduct}:{handleAddProduct :Function}) {
 
   const onFinish = (values: any) => {
     console.log('Success:', values);
-    postMethod(api_url,values,(data:any)=>{
+    postMethod(api_cate,values,(data:any)=>{
       console.log(data)
       if(data.status == 200 || 201 && data.ok == true){                                
         setContentModal({
           textStatus:'text-success',
           titleModal: 'Success',
-          descModal: 'Update product success!',
+          descModal: 'Add cate success!',
         })
         setShow(true)
         handleAddProduct()
@@ -57,7 +43,7 @@ function AddProduct({handleAddProduct}:{handleAddProduct :Function}) {
         setContentModal({
           textStatus:'text-danger',
           titleModal: 'Failure',
-          descModal: 'Update product failed!',
+          descModal: 'Add cate failed!',
         })
         setShow(true)
       }
@@ -89,47 +75,13 @@ function AddProduct({handleAddProduct}:{handleAddProduct :Function}) {
       <Input />
     </Form.Item>
 
-    <Form.Item<FieldType>
-      label="Price"
-      name="price"
-      rules={[{ required: true,validator:checkPrice }]}
-    >
-     
-     <PriceInput />
-    </Form.Item>  
+   
 
-    <Form.Item<FieldType>
-       label="Description"
-      name="description"
-      rules={[{ required: true, message: 'Please input your description!',whitespace: true }]}
-      
-    >
-      <Input />
-    </Form.Item>
+   
 
-    <Form.Item<FieldType>
-      label="Image"
-      name="image"
-      rules={[{ required: true, message: 'Please input your image!' ,whitespace: true}]}
-    >
-     <Input />
-    </Form.Item>
+   
 
-    <Form.Item<FieldType> 
-    label="Select" 
-    name='category_id' 
-    rules={[{ required: true, message: 'Please input your image!' }]}
-    >
-          <Select>
-            {cate.map(ca=>{
-              const {id ,name} = ca
-              return (
-                <Select.Option key={id} value={id}>{name}</Select.Option>
-              )
-            })}
-        
-          </Select>
-        </Form.Item>
+   
 
     <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
       <ButtonAnt type="primary" htmlType="submit">
@@ -156,4 +108,4 @@ function AddProduct({handleAddProduct}:{handleAddProduct :Function}) {
   )
 }
 
-export default AddProduct
+export default AddCate

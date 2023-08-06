@@ -1,8 +1,13 @@
 interface Product {
     id ?: string | number,
     name : string,
-    price : number,
+    price : {
+        number : number
+    },
     description : string,
-    image : string
+    image : string,
+    category_id : number
 }
-export default Product
+
+let Id: string | number | undefined
+export type{ Product,Id}

@@ -4,12 +4,12 @@ import Alert from 'react-bootstrap/Alert';
 import { Link } from 'react-router-dom';
 import Table from 'react-bootstrap/Table';
 import '../../../admin.css'
-import {Product,Id} from '../../../types/product';
+import {Cate,Id} from '../../../types/cate';
 import { api_url, deleteMethod } from '../../../ultilities';
 import Modal from 'react-bootstrap/Modal';
 
 
-function ListProduct({products,deleteProduct}:{products:Product[],deleteProduct:any}) {
+function ListCate({cates,renderCateData}:{cates:Cate[],renderCateData:Function}) {
   const [show1, setShow1] = useState(false);
   const [show, setShow] = useState(false);
   const [contentModal,setContentModal] = useState<{textStatus:string, titleModal: string; descModal: string }>({
@@ -33,7 +33,7 @@ function ListProduct({products,deleteProduct}:{products:Product[],deleteProduct:
     deleteMethod(api_url,id,(data:any)=>{
       if(data.status == 200 && data.ok == true){        
                 
-        deleteProduct()
+        renderCateData()
         setContentModal({
           textStatus:'text-success',
           titleModal: 'Success',
@@ -57,33 +57,28 @@ function ListProduct({products,deleteProduct}:{products:Product[],deleteProduct:
 
   return (
     <div className='container-fluid mt-3'>
-         <Table striped bordered hover size='sm' responsive="lg" className='fs-7'>
+         <Table striped bordered hover size='lg' responsive="lg" className='fs-7'>
       <thead>
         <tr>
           <th>Id</th>
-          <th>Product Name</th>
-          <th>Price</th>
-          <th>Desc</th>
-          <th>Image</th>
-          <th>Cate_id</th>
+          <th>Category Name</th>
+         
           <th colSpan={2}>Action</th>
         </tr>
       </thead>
       <tbody>
-        {products.map((pro,index)=>{
-            const {id , name , price ,description : desc , image , category_id } = pro
+        {cates.map((cate,index)=>{
+            const {id , name  } = cate
             
-            const priceNumber = price?.number || price
+          
           return (
             <tr key={index}>
             <td>{id}</td>
             <td style={{width :'25%'}}>{name}</td>
-            <td style={{width :'15%'}}>{priceNumber.toLocaleString()  + 'VNĐ'}</td>
-            <td style={{width :'30%'}}>{desc}</td>
-            <td><img src={image} width={40}/></td>
-            <td>{category_id}</td>
+           
+           
             <td><Link to={`edit/${id}`}>Edit</Link></td>
-            <td style={{width : '6%'}} onClick={()=>onHandleDelete(id)}>Delete</td>
+            <td style={{width : '20%'}} onClick={()=>onHandleDelete(id)}>Delete</td>
           </tr>
           )
         })}
@@ -135,4 +130,4 @@ function ListProduct({products,deleteProduct}:{products:Product[],deleteProduct:
   )
 }
 
-export default ListProduct
+export default ListCate

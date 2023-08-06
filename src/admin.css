@@ -3,6 +3,41 @@
     background-color: rgb(0, 177, 247);
     color: white ;
 }
+.item-hover-admin:hover a{
+   
+    color: white ;
+}
+.button-back-list{
+    color: white ;
+}
+.button-back-list>a{
+    color: white ;
+}
 .sidebar{
     background-color: #4e73df;
+
 }
+.sidebar>*{
+    background-color: #4e73df;
+}
+.bg-sidebar-admin>*{
+    background-color: #4e73df!important;
+}
+.text-light-admin>button{
+    color: white;
+    opacity: 0.8;
+}
+.text-light-admin>button::after{
+    color: white;
+    opacity: 0.8;
+}
+.text-light-admin>button:hover{
+    
+    opacity: 1;
+} 
+.fs-7{
+    font-size: 0.8rem;
+}
+.link{
+    text-decoration: none;
+  }

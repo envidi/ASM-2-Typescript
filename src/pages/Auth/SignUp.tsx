@@ -1,9 +1,4 @@
-import { forwardRef }from 'react';
 import { Button, Checkbox, Form, Input } from 'antd';
-
-
-
-
 
 type FieldType = {
   username?: string;
@@ -45,7 +40,9 @@ const SignUp = ({handleAdd}: {handleAdd : any}) => {
       name='username'
       rules={[{ required: true, message: 'Please input your username!' }]}
       // {...register("username")}
+      hasFeedback 
     >
+    
       <Input />
     </Form.Item>
 
@@ -67,7 +64,20 @@ const SignUp = ({handleAdd}: {handleAdd : any}) => {
     <Form.Item<FieldType>
       label="Confirm password"
       name="confirm"
-      rules={[{ required: true, message: 'Please confirm your password!' }]}
+      rules={[
+        {
+          required: true,
+          message: 'Please confirm your password!',
+        },
+        ({ getFieldValue }) => ({
+          validator(_, value) {
+            if (!value || getFieldValue('password') === value) {
+              return Promise.resolve();
+            }
+            return Promise.reject(new Error('The new password that you entered do not match!'));
+          },
+        }),
+      ]}
     >
       <Input.Password />
     </Form.Item>

@@ -1,10 +1,12 @@
-
+import { Id } from "../types/product";
 
 
 const api_url = 'http://localhost:3000/products';
 const currentData = 'http://localhost:3000/products?_limit=4';
 const api_signup = 'http://localhost:3000/users'
 const api_signin = 'http://localhost:3000/signin'
+const api_cate = 'http://localhost:3000/categories'
+
 
 const fetchApi =async (api: URL)=>{
     try {
@@ -35,7 +37,28 @@ const postMethod = (api:any,product:any,callback:any)=>{
         body : JSON.stringify(product)
     }
     fetch(api,options)
-    .then(res=>res.json())
+    .then(callback)
+ 
+}
+const deleteMethod = (api:any,id:typeof Id,callback:any)=>{
+    const options = {
+        method : 'DELETE'   ,
+          
+    }
+    fetch(api+'/'+id,options)
     .then(callback)
 }
-export { fetchApi ,getData,api_url,currentData,api_signup,api_signin,postMethod}
+const putMethod = (api:any, product:any, id:typeof Id, callback:any)=>{
+    const options = {
+        method : 'PUT',
+        headers : {
+            'Content-Type': 'application/json'
+        },
+        body : JSON.stringify(product)
+    }
+    fetch(api+'/'+id,options)
+    .then(callback)
+   
+}
+
+export { fetchApi ,getData,api_url,currentData,api_signup,api_signin,postMethod,api_cate,deleteMethod,putMethod}

@@ -20,7 +20,7 @@ type FieldType = {
 
 };
 
-function UpdateProduct({products,handleUpdate }:{products:Product[],handleUpdate:Function}) {
+function UpdateCate({products,handleUpdate }:{products:Product[],handleUpdate:Function}) {
 
   const [contentModal,setContentModal] = useState<{textStatus:string, titleModal: string; descModal: string }>({
     textStatus : 'text-danger',
@@ -176,4 +176,4 @@ function UpdateProduct({products,handleUpdate }:{products:Product[],handleUpdate
   )
 }
 
-export default UpdateProduct
+export default UpdateCate
