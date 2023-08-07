@@ -1,4 +1,13 @@
-import { Button, Checkbox, Form, Input } from 'antd';
+import { Button as AntdButton, Checkbox, Form, Input } from 'antd';
+import Modal from 'react-bootstrap/Modal';
+import Button  from 'react-bootstrap/Button';
+import { useState } from 'react';
+import { api_signup } from '../../ultilities';
+import {Link} from 'react-router-dom'
+import { signMethod } from '../../ultilities';
+import {validateCustomLength} from '../../AntdComponents/ValidateLength';
+
+
 
 type FieldType = {
   username?: string;
@@ -9,9 +18,36 @@ type FieldType = {
 };
 
 const SignUp = ({handleAdd}: {handleAdd : any}) => {
+
+  const [show, setShow] = useState(false);
+  const [contentModal,setContentModal] = useState<{ titleModal: string; descModal: string,textStatus: string }>({
+    titleModal: 'Failed',
+    descModal: 'Sign in failed',
+    textStatus : 'text-danger'
+  })
+  const handleClose = () => setShow(false);
   
   const onFinish = (values: any) => {
     console.log('Success:', values);
+    signMethod(api_signup,values,( data:any )=>{
+      if(typeof data ==='string'){
+          setContentModal({
+            textStatus : 'text-danger',
+            titleModal: 'Failed',
+            descModal: `${data}. Sign up failed!`,
+          })
+          setShow(true)
+      }
+      else{
+        
+        setContentModal({
+          textStatus:'text-success',
+          titleModal: 'Success',
+          descModal: ` Sign up Success!`,
+        })
+        setShow(true)  
+      }
+    })
     handleAdd(values);
   };
   
@@ -46,18 +82,29 @@ const SignUp = ({handleAdd}: {handleAdd : any}) => {
       <Input />
     </Form.Item>
 
-    <Form.Item<FieldType>
-      label="Email"
-      name="email"
-      rules={[{ required: true, message: 'Please input your email!' }]}
-    >
-      <Input />
-    </Form.Item>
+    <Form.Item
+        name="email"
+        label="E-mail"
+        rules={[
+          {
+            type: 'email',
+            message: 'The input is not valid E-mail!',
+          },
+          {
+            required: true,
+            message: 'Please input your E-mail!',
+          },
+        ]}
+      >
+        <Input />
+      </Form.Item>
 
     <Form.Item<FieldType>
       label="Password"
       name="password"
-      rules={[{ required: true, message: 'Please input your password!' }]}
+      rules={[{ required: true, message: 'Please input your password!' }, {
+        validator: validateCustomLength(5),
+      }]}
     >
       <Input.Password />
     </Form.Item>
@@ -91,11 +138,27 @@ const SignUp = ({handleAdd}: {handleAdd : any}) => {
     </Form.Item>
 
     <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-      <Button type="primary" htmlType="submit">
+      <AntdButton type="primary" htmlType="submit">
         Submit
-      </Button>
+      </AntdButton>
     </Form.Item>
   </Form>
+
+
+  <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title className='text-success'>{contentModal.titleModal }</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>{contentModal.descModal}</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={handleClose}>            
+            <Link to={'/signin'}>Back to sign in</Link>
+          </Button>
+        </Modal.Footer>
+      </Modal>
   </div>
   )
   };

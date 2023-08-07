@@ -41,17 +41,9 @@
       "category_id": 1
     },
     {
-      "name": "redvf",
-      "price": 34,
-      "description": "dfsd",
-      "image": "sdvfd",
-      "category_id": 1,
-      "id": 6
-    },
-    {
       "name": "duc",
       "price": {
-        "number": 2343445445656
+        "number": 23434454
       },
       "description": "dfsd123",
       "image": "https://cdn.ankhang.vn/media/product/250_21712_laptop_lg_gram_2022_16z90q_g_ah52a5_00.jpg",
@@ -115,48 +107,79 @@
     {
       "name": "MSI",
       "id": 4
+    },
+    {
+      "name": "Dell",
+      "id": 5
     }
   ],
   "users": [
     {
       "email": "duc123@gmail.com",
       "password": "$2a$10$KzqFsS0Bhw1R6mreuxL1uunOj0WrIw1l0MHPq07AR6XpuzP7LAk0e",
-      "id": 1
+      "id": 1,
+      "role": 1
     },
     {
-      "email": "re123@gmail.com",
-      "password": "$2a$10$4AuBOMCpPzCLwDcFcv.6feVWtWFxh1ORdaYg5nbgzRjeDs1C.RENa",
-      "username": "qwewe",
-      "confirm": "12345678",
+      "email": "envidi123@gmail.com",
+      "password": "$2a$10$t4ViHwloK.uYguVcda3.q.aEr28Yomvz2GDbNoJG3suqMcYN6UQia",
+      "username": "envidi",
+      "confirm": "12345",
       "remember": true,
+      "role": 1,
       "id": 2
     },
     {
-      "email": "qwer123@gmail.com",
-      "password": "$2a$10$Mkfm6kKG6mKe1VWfdJecluJVhyV3Eaf5Iww31P5AAE55nohiNN.Hu",
-      "username": "qwert",
-      "confirm": "12345678",
+      "email": "envidi123@gmail.com",
+      "password": "$2a$10$dPXL/IsyAZbPnnQyj5ALzulGm/xcPbVQFnf3l/EEIozm0HgW5pCaO",
+      "username": "envidi",
+      "confirm": "12345",
       "remember": true,
       "id": 3
     },
     {
-      "email": "duc1234@gmail.com",
-      "password": "$2a$10$DYicPRMQQs5zdW7SRj15N.p3M0UQLYTcbkzCziUnhLYhIY8cZzj7O",
+      "email": "envidi78@gmail.com",
+      "password": "$2a$10$5BSeC/M89m91C46FBA4C4u7EcGNbDBUHi9hN8H9v9VQ19rWJoDceK",
+      "username": "envidi78",
+      "role": 1,
       "id": 4
     },
     {
-      "email": "duc12345@gmail.com",
-      "password": "$2a$10$RK/KZDtPb6/m7Hofb7tctudlZOgtveWDMwHtB3A9R834P5UVla3cq",
-      "username": "duc",
+      "email": "duc0909@gmail.com",
+      "password": "$2a$10$/f2Su5x.Vo9AFnECZtL8A.cCrkQh6DkWCdHX67X4Z6zVP7E6zrXu2",
+      "username": "duc12345",
+      "confirm": "123456",
+      "remember": true,
       "id": 5
     },
     {
-      "email": "duc1234556@gmail.com",
-      "password": "$2a$10$ZUSNaoJRvGsWN15HVFnib.zCqrlEeCqQTfh77ZLYSELWHmiv19I6O",
-      "username": "duc",
-      "confirm": "12345678",
+      "email": "duc0909@gmail.com",
+      "password": "$2a$10$K/EV3bJp/TKF6XN9TEOtGuXUnJpisIbipzy7iHftoGnRsq/9A8DMK",
+      "username": "duc12345",
+      "confirm": "123456",
       "remember": true,
       "id": 6
+    },
+    {
+      "email": "envidi8989@gmail.com",
+      "password": "$2a$10$hv4OfTyS6CTJrjpSNojChecCjlWj9TUbDrvdSIVfv/vJi2CJLKkMi",
+      "username": "hello23",
+      "role": 1,
+      "id": 7
+    }
+  ],
+  "roleID": [
+    {
+      "id": 1,
+      "name": "Admin"
+    },
+    {
+      "id": 2,
+      "name": "Manager"
+    },
+    {
+      "id": 3,
+      "name": "Member"
     }
   ]
 }

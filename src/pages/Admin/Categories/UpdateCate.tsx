@@ -1,13 +1,11 @@
-import {  useEffect,useState } from 'react'
-import { Button as ButtonAnt, Form, Input, Select, } from 'antd';
-import { api_cate, api_url, getData,  putMethod } from '../../../ultilities';
-import { Product } from '../../../types/product';
+import {  useState } from 'react'
+import { Button as ButtonAnt, Form, Input, } from 'antd';
+import { api_cate,   putMethod } from '../../../ultilities';
 import { useParams } from 'react-router-dom';
-import PriceInput from '../../../AntdComponents/PriceInput';
 import Modal from 'react-bootstrap/Modal';
 import Button  from 'react-bootstrap/Button';
-import checkPrice from '../../../AntdComponents/CheckPrice';
 import { Link } from 'react-router-dom';
+import { Cate } from '../../../types/cate';
 import '../../../index.css'
 import '../../../admin.css'
 
@@ -20,56 +18,43 @@ type FieldType = {
 
 };
 
-function UpdateCate({products,handleUpdate }:{products:Product[],handleUpdate:Function}) {
+function UpdateCate({cates,renderCateData }:{cates:Cate[],renderCateData:Function}) {
 
   const [contentModal,setContentModal] = useState<{textStatus:string, titleModal: string; descModal: string }>({
     textStatus : 'text-danger',
     titleModal: 'Failed',
-    descModal: 'Sign in failed',
+    descModal: 'Update category failed',
   })
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const {id } = useParams()
   // const handleShow = () => setShow(true);
 
-  const product = products.find(pro=>pro.id == id)
+  const cate = cates.find(cate=>cate.id == id)
 
-  if(!product)return
-  const {name, price , description, image,category_id} = product
+  if(!cate)return
+  const {name} = cate
   
   
-  const [cate,setCate] = useState([])
-
-  useEffect(()=>{
-    const handleUrl = new URL(api_cate)
-    getData(handleUrl).then((data:any)=>{
-      setCate(data)
-            
-    })
-  },[])
-
- 
-
   const onFinish = (values: any) => {
     console.log('Success:', values);
-    putMethod(api_url,values,id,(data:any)=>{
+    putMethod(api_cate,values,id,(data:any)=>{
       if(data.status == 200 && data.ok == true){        
-                
-        
+                        
         setContentModal({
           textStatus:'text-success',
           titleModal: 'Success',
-          descModal: 'Update product success!',
+          descModal: 'Update category success!',
         })
         setShow(true)
-        handleUpdate()
+        renderCateData()
         
       }else{
          
         setContentModal({
           textStatus:'text-danger',
           titleModal: 'Failure',
-          descModal: 'Update product failed!',
+          descModal: 'Update category failed!',
         })
         setShow(true)
       }
@@ -86,7 +71,7 @@ function UpdateCate({products,handleUpdate }:{products:Product[],handleUpdate:Fu
     labelCol={{ span: 8 }}
     wrapperCol={{ span: 16 }}
     style={{ width :'60%' ,background:'rgb(230, 229, 229)'}}
-    initialValues={{  name,  price: price,description,image,category_id}}
+    initialValues={{name}}
     onFinish={onFinish}
     onFinishFailed={onFinishFailed}
     autoComplete="off"
@@ -101,55 +86,7 @@ function UpdateCate({products,handleUpdate }:{products:Product[],handleUpdate:Fu
     >
       <Input  />
     </Form.Item>
-
-    <Form.Item<FieldType>
-      label="Price"
-      name="price"
-      rules={[{ required: true, validator:checkPrice }]}
-    >
-     
-     <PriceInput />
-    </Form.Item>  
-
-    <Form.Item<FieldType>
-       label="Description"
-      name="description"
-      rules={[{ required: true, message: 'Please input your description!',whitespace: true }]}
-      
-    >
-      <Input />
-    </Form.Item>
-
-    <Form.Item<FieldType>
-      label="Image"
-      name="image"
-      rules={[{ required: true, message: 'Please input your image!' ,whitespace: true}]}
-    >
-     <Input />
-   
-    </Form.Item>
-    <Form.Item<FieldType>
-      label="Image"
-      name="image"
-    >
-     <img src={image} width={40}/>
-    </Form.Item>
-
-    <Form.Item<FieldType> 
-    label="Select"
-    name='category_id'
-    rules={[{ required: true, message: 'Please input your category!' }]}
-    >
-          <Select>
-            {cate.map(ca=>{
-              const {id ,name} = ca
-              return (
-                <Select.Option key={id} value={id}>{name}</Select.Option>
-              )
-            })}
-        
-          </Select>
-        </Form.Item>
+                 
 
     <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
       <ButtonAnt type="primary" htmlType="submit">
@@ -167,8 +104,8 @@ function UpdateCate({products,handleUpdate }:{products:Product[],handleUpdate:Fu
             <Button variant="secondary" onClick={handleClose}>
               Close
             </Button> 
-            <Button variant="primary" className='button-back-list' onClick={()=>{}}>
-              <Link className='link' to={'/admin/product'}>Back to list</Link>
+            <Button variant="primary" className='button-back-list' >
+              <Link className='link' to={'/admin/category'}>Back to list</Link>
             </Button>
           </Modal.Footer>              
       </Modal>

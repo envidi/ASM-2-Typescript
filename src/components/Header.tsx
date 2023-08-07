@@ -8,7 +8,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import '../index.css'
 
 function Header({isLogin,user,logOut}:{isLogin:boolean,user:any,logOut:any}) {
-  const {username} = user?.user || 'Anonymous'
+  const {username,role = 3} = user?.user || 'Anonymous'
   return (
     <Navbar expand="lg" className="bg-blue my-1 rounded">
     <Container fluid>
@@ -32,7 +32,12 @@ function Header({isLogin,user,logOut}:{isLogin:boolean,user:any,logOut:any}) {
               <NavDropdown.Item href="#action/3.2">
                Đơn hàng
               </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3"> Admin</NavDropdown.Item>
+              {
+                role === 1 ? (
+                  <NavDropdown.Item href="#action/3.3"><Link to={`admin/product`}>Admin</Link></NavDropdown.Item>
+                ) : (  <></>  )
+              }
+         
               <NavDropdown.Divider />
               <NavDropdown.Item  onClick={logOut}>
                 Đăng xuất

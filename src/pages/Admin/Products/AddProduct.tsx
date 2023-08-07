@@ -7,6 +7,7 @@ import PriceInput from '../../../AntdComponents/PriceInput';
 import Button  from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { Link } from 'react-router-dom';
+import { validateCustomLength } from '../../../AntdComponents/ValidateLength';
 
 type FieldType = {
   name?: string;
@@ -84,7 +85,9 @@ function AddProduct({handleAddProduct}:{handleAddProduct :Function}) {
     <Form.Item<FieldType>
       label="Name"
       name="name"
-      rules={[{ required: true, message: 'Please input your product name!',whitespace: true }]}
+      rules={[{ required: true, message: 'Please input your product name!',whitespace: true },{
+        validator: validateCustomLength(5)
+      }]}
     >
       <Input />
     </Form.Item>
@@ -101,7 +104,9 @@ function AddProduct({handleAddProduct}:{handleAddProduct :Function}) {
     <Form.Item<FieldType>
        label="Description"
       name="description"
-      rules={[{ required: true, message: 'Please input your description!',whitespace: true }]}
+      rules={[{ required: true, message: 'Please input your description!',whitespace: true },{
+        validator: validateCustomLength(10)
+      }]}
       
     >
       <Input />

@@ -1,17 +1,17 @@
 
 import {Routes,Route} from 'react-router-dom'
 import ClientLayout from './layouts/ClientLayout'
-import { api_url, getData,currentData,postMethod,api_signup, api_cate } from './ultilities'
+import { api_url, getData,currentData,postMethod,api_signup, api_cate, api_user } from './ultilities'
 import { useEffect ,useState} from 'react'
 import {Product} from './types/product'
 import { ProductPage,HomePage,DetailPage ,SignIn,SignUp} from './pages'
 import { ListProduct,AddProduct,UpdateProduct } from './pages/Admin/Products'
 import Spinner from 'react-bootstrap/Spinner';
 import AdminLayout from './layouts/AdminLayout'
-import ListCate from './pages/Admin/Categories/ListCate'
-import AddCate from './pages/Admin/Categories/AddCate'
-import UpdateCate from './pages/Admin/Categories/UpdateCate'
 import { Cate } from './types/cate'
+import { User } from './types/user'
+import {ListUser,AddUser,UpdateUser} from './pages/Admin/Users'
+import {ListCate,AddCate,UpdateCate} from './pages/Admin/Categories'
 
 
 function App() {
@@ -20,6 +20,7 @@ function App() {
   const [productHome , setproductHome] = useState<Product[]>([])
   const [products , setProducts] = useState<Product[]>([])
   const [cates, setCates] = useState<Cate[]>([])
+  const [users, setUsers] = useState<User[]>([])
   const [isLogin,setIsLogin] = useState(false);
   const [user,setUser] = useState({})
   useEffect(()=>{
@@ -33,6 +34,13 @@ function App() {
     const handleUrl = new URL(api_cate)
     getData(handleUrl).then((data:Cate[])=>{
       setCates(data)
+            
+    })
+  },[loadings])
+  useEffect(()=>{
+    const handleUrl = new URL(api_user)
+    getData(handleUrl).then((data:User[])=>{
+      setUsers(data)
             
     })
   },[loadings])
@@ -59,6 +67,7 @@ function App() {
     if(data){
       setUser(data)
       setIsLogin(true)
+    
     }
   }
 
@@ -93,6 +102,13 @@ function App() {
             
     })
   }
+  const renderUserData = ()=>{
+    const handleUrl = new URL(api_user)
+    getData(handleUrl).then((data:User[])=>{
+      setUsers(data)
+            
+    })
+  }
 
   
 
@@ -117,8 +133,13 @@ function App() {
         </Route>
         <Route path='category'>
           <Route index element={<ListCate renderCateData={renderCateData} cates={cates} />}/>
-          <Route path='add' element={<AddCate handleAddProduct={handleAddProduct}  />}/>
-          <Route path='edit/:id' element={<UpdateCate handleUpdate={handleUpdate}  products={products} />}/>
+          <Route path='add' element={<AddCate renderCateData={renderCateData}  />}/>
+          <Route path='edit/:id' element={<UpdateCate renderCateData={renderCateData}  cates={cates} />}/>
+        </Route>
+        <Route path='user'>
+          <Route index element={<ListUser renderUserData={renderUserData} users={users} />}/>
+          <Route path='add' element={<AddUser renderUserData={renderUserData}  />}/>
+          <Route path='edit/:id' element={<UpdateUser renderUserData={renderUserData}  users={users} />}/>
         </Route>
         
       </Route>

@@ -2,7 +2,8 @@ import { useState } from 'react';
 import Button  from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { Button as AntdButton, Checkbox, Form, Input } from 'antd';
-import { api_signin,postMethod } from '../../ultilities';
+import { api_signin, signMethod } from '../../ultilities';
+import { validateCustomLength } from '../../AntdComponents/ValidateLength';
 
 
 
@@ -17,19 +18,20 @@ type FieldType = {
 const SignIn = ({handleSignIn}:{handleSignIn: any,isLogin:boolean}) => {
  
     const [show, setShow] = useState(false);
-    const [contentModal,setContentModal] = useState<{ titleModal: string; descModal: string }>({
+    const [contentModal,setContentModal] = useState<{ titleModal: string; descModal: string,textStatus: string }>({
       titleModal: 'Failed',
       descModal: 'Sign in failed',
+      textStatus: 'text-danger'
     })
     const onFinish = (values: any) => {
       
       
-      postMethod(api_signin,values,(datas:any)=>{
+      signMethod(api_signin,values,(datas:any)=>{
         if(typeof datas ==='string'){
-          console.log(datas)
           setContentModal({
             titleModal: 'Failed',
             descModal: `${datas}. Sign in failed!`,
+            textStatus: 'text-danger'
           })
           setShow(true)
         }
@@ -37,6 +39,7 @@ const SignIn = ({handleSignIn}:{handleSignIn: any,isLogin:boolean}) => {
           setContentModal({
             titleModal: 'Success',
             descModal: 'Sign in success!',
+            textStatus: 'text-success'
           })
           setShow(true)  
           handleSignIn(datas);              
@@ -65,10 +68,19 @@ const SignIn = ({handleSignIn}:{handleSignIn: any,isLogin:boolean}) => {
     autoComplete="off"
     className='form-auth col-md-6 col-sm-9'
     >
-      <Form.Item<FieldType>
-        label="Email"
+      <Form.Item
         name="email"
-        rules={[{ required: true, message: 'Please input your email!' }]}
+        label="E-mail"
+        rules={[
+          {
+            type: 'email',
+            message: 'The input is not valid E-mail!',
+          },
+          {
+            required: true,
+            message: 'Please input your E-mail!',
+          },
+        ]}
       >
         <Input />
       </Form.Item>
@@ -76,7 +88,7 @@ const SignIn = ({handleSignIn}:{handleSignIn: any,isLogin:boolean}) => {
       <Form.Item<FieldType>
         label="Password"
         name="password"
-        rules={[{ required: true, message: 'Please input your password!' }]}
+        rules={[{ required: true, message: 'Please input your password!' },{ validator : validateCustomLength(5)}]}
       >
         <Input.Password />
       </Form.Item>
@@ -107,9 +119,7 @@ const SignIn = ({handleSignIn}:{handleSignIn: any,isLogin:boolean}) => {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Save Changes
-          </Button>
+          
         </Modal.Footer>
       </Modal>
    

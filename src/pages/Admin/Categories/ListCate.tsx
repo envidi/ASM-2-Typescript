@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import Table from 'react-bootstrap/Table';
 import '../../../admin.css'
 import {Cate,Id} from '../../../types/cate';
-import { api_url, deleteMethod } from '../../../ultilities';
+import { api_cate, deleteMethod } from '../../../ultilities';
 import Modal from 'react-bootstrap/Modal';
 
 
@@ -30,14 +30,14 @@ function ListCate({cates,renderCateData}:{cates:Cate[],renderCateData:Function})
   }
 
   const handleDelete = (id:typeof Id)=>{
-    deleteMethod(api_url,id,(data:any)=>{
+    deleteMethod(api_cate,id,(data:any)=>{
       if(data.status == 200 && data.ok == true){        
                 
         renderCateData()
         setContentModal({
           textStatus:'text-success',
           titleModal: 'Success',
-          descModal: 'Delete product success!',
+          descModal: 'Delete category success!',
         })
         setShow(false)
         setShow1(true)
@@ -47,7 +47,7 @@ function ListCate({cates,renderCateData}:{cates:Cate[],renderCateData:Function})
         setContentModal({
           textStatus:'text-danger',
           titleModal: 'Failure',
-          descModal: 'Delete product failed!',
+          descModal: 'Delete category failed!',
         })
         setShow(false)
         setShow1(true)
@@ -93,7 +93,7 @@ function ListCate({cates,renderCateData}:{cates:Cate[],renderCateData:Function})
         <Modal.Header closeButton>
           <Modal.Title >Delete  </Modal.Title>
         </Modal.Header>
-        <Modal.Body>Do you want delete product forever ?</Modal.Body>
+        <Modal.Body>Do you want delete category forever ?</Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Close

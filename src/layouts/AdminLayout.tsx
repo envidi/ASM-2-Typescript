@@ -48,8 +48,7 @@ function AdminLayout() {
           <ListGroup.Item className='item-hover-admin'>
             <Link  className='link' to={'category'}>   List Cate</Link>  
           </ListGroup.Item>
-          <ListGroup.Item className='item-hover-admin'>
-        
+          <ListGroup.Item className='item-hover-admin'>        
             <Link  className='link' to={'category/add'}> Add Cate</Link>  
           </ListGroup.Item>
     
@@ -63,10 +62,10 @@ function AdminLayout() {
         <Accordion.Body>
         <ListGroup>
           <ListGroup.Item className='item-hover-admin'>
-            List product         
+             <Link  className='link' to={'user'}>List User</Link>  
           </ListGroup.Item>
           <ListGroup.Item className='item-hover-admin'>
-            Add product
+            <Link  className='link' to={'user/add'}>Add User</Link>
           </ListGroup.Item>
     
         </ListGroup>

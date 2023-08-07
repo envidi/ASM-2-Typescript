@@ -1,7 +1,8 @@
-import {  useEffect,useState } from 'react'
+import {  useState } from 'react'
 import { Button as ButtonAnt, Form, Input, } from 'antd';
 import '../../../index.css'
-import { api_cate, api_url, getData, postMethod } from '../../../ultilities';
+import { api_cate, postMethod } from '../../../ultilities';
+import { validateCustomLength } from '../../../AntdComponents/ValidateLength';
 
 import Button  from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
@@ -13,7 +14,7 @@ type FieldType = {
 
 };
 
-function AddCate({handleAddProduct}:{handleAddProduct :Function}) {
+function AddCate({renderCateData}:{renderCateData:Function}) {
    
 
   const [contentModal,setContentModal] = useState<{textStatus:string, titleModal: string; descModal: string }>({
@@ -37,7 +38,7 @@ function AddCate({handleAddProduct}:{handleAddProduct :Function}) {
           descModal: 'Add cate success!',
         })
         setShow(true)
-        handleAddProduct()
+        renderCateData()
       }else{
          
         setContentModal({
@@ -70,7 +71,9 @@ function AddCate({handleAddProduct}:{handleAddProduct :Function}) {
     <Form.Item<FieldType>
       label="Name"
       name="name"
-      rules={[{ required: true, message: 'Please input your product name!',whitespace: true }]}
+      rules={[{ required: true, message: 'Please input your product name!',whitespace: true },{
+        validator: validateCustomLength(5)
+      }]}
     >
       <Input />
     </Form.Item>
@@ -100,7 +103,7 @@ function AddCate({handleAddProduct}:{handleAddProduct :Function}) {
               Close
             </Button> 
             <Button variant="primary" className='button-back-list' onClick={()=>{}}>
-              <Link className='link' to={'/admin/product'}>Back to list</Link>
+              <Link className='link' to={'/admin/category'}>Back to list</Link>
             </Button>
           </Modal.Footer>              
       </Modal>
