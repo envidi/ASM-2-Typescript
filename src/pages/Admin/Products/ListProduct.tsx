@@ -9,7 +9,7 @@ import { api_url, deleteMethod } from '../../../ultilities';
 import Modal from 'react-bootstrap/Modal';
 
 
-function ListProduct({products,deleteProduct}:{products:Product[],deleteProduct:any}) {
+function ListProduct({products,renderProductData}:{products:Product[],renderProductData:any}) {
   const [show1, setShow1] = useState(false);
   const [show, setShow] = useState(false);
   const [contentModal,setContentModal] = useState<{textStatus:string, titleModal: string; descModal: string }>({
@@ -33,7 +33,7 @@ function ListProduct({products,deleteProduct}:{products:Product[],deleteProduct:
     deleteMethod(api_url,id,(data:any)=>{
       if(data.status == 200 && data.ok == true){        
                 
-        deleteProduct()
+        renderProductData()
         setContentModal({
           textStatus:'text-success',
           titleModal: 'Success',

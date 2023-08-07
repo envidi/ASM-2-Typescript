@@ -1,5 +1,5 @@
 import Figure from 'react-bootstrap/Figure';
-import Product from '../types/product'
+import {Product} from '../types/product'
 import { useParams } from 'react-router-dom';
 import Breadcrumb from 'react-bootstrap/Breadcrumb';
 import { Link } from 'react-router-dom';

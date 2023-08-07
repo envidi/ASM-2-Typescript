@@ -18,7 +18,7 @@ type FieldType = {
 
 };
 
-function AddProduct({handleAddProduct}:{handleAddProduct :Function}) {
+function AddProduct({renderProductData}:{renderProductData :Function}) {
 
   const [cate,setCate] = useState([])
 
@@ -52,7 +52,7 @@ function AddProduct({handleAddProduct}:{handleAddProduct :Function}) {
           descModal: 'Update product success!',
         })
         setShow(true)
-        handleAddProduct()
+        renderProductData()
       }else{
          
         setContentModal({

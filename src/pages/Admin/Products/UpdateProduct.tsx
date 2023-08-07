@@ -20,7 +20,7 @@ type FieldType = {
 
 };
 
-function UpdateProduct({products,handleUpdate }:{products:Product[],handleUpdate:Function}) {
+function UpdateProduct({products,renderProductData }:{products:Product[],renderProductData:Function}) {
 
   const [contentModal,setContentModal] = useState<{textStatus:string, titleModal: string; descModal: string }>({
     textStatus : 'text-danger',
@@ -62,7 +62,7 @@ function UpdateProduct({products,handleUpdate }:{products:Product[],handleUpdate
           descModal: 'Update product success!',
         })
         setShow(true)
-        handleUpdate()
+        renderProductData()
         
       }else{
          

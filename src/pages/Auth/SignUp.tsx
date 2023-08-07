@@ -17,7 +17,7 @@ type FieldType = {
   email?: string;
 };
 
-const SignUp = ({handleAdd}: {handleAdd : any}) => {
+const SignUp = () => {
 
   const [show, setShow] = useState(false);
   const [contentModal,setContentModal] = useState<{ titleModal: string; descModal: string,textStatus: string }>({
@@ -48,7 +48,7 @@ const SignUp = ({handleAdd}: {handleAdd : any}) => {
         setShow(true)  
       }
     })
-    handleAdd(values);
+    
   };
   
   const onFinishFailed = (errorInfo: any) => {

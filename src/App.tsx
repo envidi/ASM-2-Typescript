@@ -1,7 +1,7 @@
 
 import {Routes,Route} from 'react-router-dom'
 import ClientLayout from './layouts/ClientLayout'
-import { api_url, getData,currentData,postMethod,api_signup, api_cate, api_user } from './ultilities'
+import { api_url, getData,currentData, api_cate, api_user } from './ultilities'
 import { useEffect ,useState} from 'react'
 import {Product} from './types/product'
 import { ProductPage,HomePage,DetailPage ,SignIn,SignUp} from './pages'
@@ -58,11 +58,7 @@ function App() {
     }
   },[productHome])
 
-  const handleAdd = (product:Product)=>{
-    postMethod(api_signup,product,( data:Product )=>{
-      console.log(data)
-    })
-  }
+ 
   const handleSignIn = (data:any)=>{
     if(data){
       setUser(data)
@@ -73,22 +69,9 @@ function App() {
 
   const logOut = ()=>{
     setIsLogin(false)
-  }
-  const deleteProduct = ()=>{
-    const handleUrl = new URL(api_url)
-    getData(handleUrl).then((data:Product[])=>{
-      setProducts(data)
-            
-    })
-  }
-  const handleUpdate = ()=>{
-    const handleUrl = new URL(api_url)
-    getData(handleUrl).then((data:Product[])=>{
-      setProducts(data)
-            
-    })
-  }
-  const handleAddProduct = ()=>{
+  } 
+  
+  const renderProductData = ()=>{
     const handleUrl = new URL(api_url)
     getData(handleUrl).then((data:Product[])=>{
       setProducts(data)
@@ -122,14 +105,14 @@ function App() {
           <Route path='product' element={<ProductPage products={products} />}/>
           <Route path='product/:id' element={<DetailPage products={products} />}/>
           <Route path='signin' element={<SignIn isLogin={isLogin} handleSignIn={handleSignIn}  />}/>
-          <Route path='signup' element={<SignUp handleAdd={handleAdd} />}/>
+          <Route path='signup' element={<SignUp  />}/>
           
       </Route>
       <Route path='/admin' element={<AdminLayout/>}>
         <Route path='product'>
-          <Route index element={<ListProduct deleteProduct={deleteProduct} products={products} />}/>
-          <Route path='add' element={<AddProduct handleAddProduct={handleAddProduct}  />}/>
-          <Route path='edit/:id' element={<UpdateProduct handleUpdate={handleUpdate}  products={products} />}/>
+          <Route index element={<ListProduct renderProductData={renderProductData} products={products} />}/>
+          <Route path='add' element={<AddProduct renderProductData={renderProductData}  />}/>
+          <Route path='edit/:id' element={<UpdateProduct renderProductData={renderProductData}  products={products} />}/>
         </Route>
         <Route path='category'>
           <Route index element={<ListCate renderCateData={renderCateData} cates={cates} />}/>

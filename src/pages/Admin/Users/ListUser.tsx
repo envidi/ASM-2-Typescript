@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import Table from 'react-bootstrap/Table';
 import '../../../admin.css'
 import {Id} from '../../../types/cate';
-import { api_cate, deleteMethod ,api_role, getData, api_user} from '../../../ultilities';
+import {  deleteMethod ,api_role, getData, api_user} from '../../../ultilities';
 import Modal from 'react-bootstrap/Modal';
 import { User,Role } from '../../../types/user';
 

@@ -1,5 +1,5 @@
 import { Main } from '../components'
-import Product from '../types/product'
+import {Product} from '../types/product'
 import Breadcrumb from 'react-bootstrap/Breadcrumb';
 
 function ProductPage({products }:{products : Product[]}) {
