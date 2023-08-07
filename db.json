@@ -41,54 +41,14 @@
       "category_id": 1
     },
     {
-      "name": "duc",
+      "name": "Laptop Lenovo ThinkPad X1 Carbon Gen 10 21CBS15Q00",
       "price": {
-        "number": 23434454
+        "number": 40590000
       },
-      "description": "dfsd123",
-      "image": "https://cdn.ankhang.vn/media/product/250_21712_laptop_lg_gram_2022_16z90q_g_ah52a5_00.jpg",
-      "category_id": 1,
-      "id": 7
-    },
-    {
-      "name": "sfds",
-      "price": {
-        "number": 324
-      },
-      "description": "34",
-      "image": "5435",
-      "category_id": 1,
-      "id": 8
-    },
-    {
-      "name": "dsf",
-      "price": {
-        "number": 3
-      },
-      "description": "fd",
-      "image": "df",
-      "category_id": 1,
-      "id": 9
-    },
-    {
-      "name": "dsf",
-      "price": {
-        "number": 345
-      },
-      "description": "fdsf",
-      "image": "gffd",
-      "category_id": 2,
-      "id": 10
-    },
-    {
-      "name": "rgdfg",
-      "price": {
-        "number": 2323
-      },
-      "description": "2eade",
-      "image": "fdsfd",
-      "category_id": 1,
-      "id": 11
+      "description": "The most powerful laptop for gaming",
+      "image": "https://cdn.ankhang.vn/media/product/250_22577_lenovo_thinkpad_x1_carbon_gen_10_21cbs15q00_20.jpg",
+      "category_id": 6,
+      "id": 12
     }
   ],
   "categories": [
@@ -111,6 +71,10 @@
     {
       "name": "Dell",
       "id": 5
+    },
+    {
+      "name": "Lenovo",
+      "id": 6
     }
   ],
   "users": [

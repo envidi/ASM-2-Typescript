@@ -13,6 +13,7 @@ function Main({products }:{products : Product[]}) {
       
       {products.map((pro,index)=>{
         const {id , name , price  , image} = pro
+        const priceNumber = price?.number || price
         return (
           
        
@@ -22,7 +23,7 @@ function Main({products }:{products : Product[]}) {
             <Card.Body>
               <Card.Title className='fs-5'>{name}</Card.Title>
               <Card.Text className='fs-5 price-color'>
-                {price.toLocaleString() + ' VNĐ'}
+                {priceNumber.toLocaleString() + ' VNĐ'}
               </Card.Text>
               <Button variant="primary"><Link style={{color : "white",textDecoration : 'none'}} to={`/product/${id}`}>Xem chi tiết</Link></Button>
             </Card.Body>
