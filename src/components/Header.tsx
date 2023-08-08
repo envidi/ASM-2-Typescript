@@ -5,14 +5,42 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { Link } from 'react-router-dom';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import Image from 'react-bootstrap/Image';
 import '../index.css'
+import { useState,useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-function Header({isLogin,user,logOut}:{isLogin:boolean,user:any,logOut:any}) {
+function Header({isLogin,user,logOut,handleSearch}:{isLogin:boolean,user:any,logOut:any,handleSearch:Function}) {
+  const inputRef = useRef<HTMLInputElement | null>(null); ;
+
+  const navigate = useNavigate();
   const {username,role = 3} = user?.user || 'Anonymous'
+  const [search,setSearch] = useState<string>('')
+
+  const handleChange = (e:any)=>{
+    const target = e.target
+    const value = target.value
+    setSearch(value)
+    handleSearch(value)
+    
+  }
+    const handleSubmit = (e:any)=>{
+      e.preventDefault()
+      handleSearch(search)
+      setSearch('')
+      if (inputRef.current) {
+        inputRef.current.focus();
+      }
+      navigate('/product')
+      
+      
+    }
+  
+  
   return (
     <Navbar expand="lg" className="bg-blue my-1 rounded">
     <Container fluid>
-      <Navbar.Brand href="#">Navbar scroll</Navbar.Brand>
+      <Navbar.Brand href="#"> <Image src="https://res.cloudinary.com/dsmy4ogdj/image/upload/v1691390839/logo-shop-laptop_tqmezj.png" width={50} rounded /></Navbar.Brand>
       <Navbar.Toggle aria-controls="navbarScroll" />
       <Navbar.Collapse id="navbarScroll">
         <Nav
@@ -58,15 +86,17 @@ function Header({isLogin,user,logOut}:{isLogin:boolean,user:any,logOut:any}) {
          
         
         </Nav>
-        <Form className="d-flex">
+        <Form className="d-flex" onSubmit={handleSubmit}>
       
           <Form.Control
-            type="search"
+            ref={inputRef}
             placeholder="Search"
             className="me-2"
             aria-label="Search"
+            value={search}
+            onChange={handleChange}
           />
-          <Button variant="outline-primary">Search</Button>
+          <Button type='submit' variant="outline-primary">Search</Button>
         </Form>
       </Navbar.Collapse>
     </Container>

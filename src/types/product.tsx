@@ -1,5 +1,5 @@
 interface Product {
-    json(): any
+    
     id ?: string | number,
     name : string,
     price : {
@@ -8,7 +8,8 @@ interface Product {
     description : string,
     image : string,
     category_id : number,
-    accessToken : string
+    accessToken : string,
+    rate ?: number 
 }
 
 let Id: string | number | undefined

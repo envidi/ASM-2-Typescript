@@ -15,6 +15,7 @@ import {ListCate,AddCate,UpdateCate} from './pages/Admin/Categories'
 
 
 function App() {
+  const [defaultProduct,setDefaultProduct] =  useState<Product[]>([])
   
   const [loadings, setLoading] = useState(true);
   const [productHome , setproductHome] = useState<Product[]>([])
@@ -29,7 +30,13 @@ function App() {
       setProducts(data)
             
     })
+    const handleUrl1 = new URL(api_url)
+    getData(handleUrl1).then((data:Product[])=>{
+      setDefaultProduct(data)
+            
+    })
   },[loadings])
+  
   useEffect(()=>{
     const handleUrl = new URL(api_cate)
     getData(handleUrl).then((data:Cate[])=>{
@@ -66,6 +73,12 @@ function App() {
     
     }
   }
+  const handleSearch = (value:string)=>{
+    const search = defaultProduct.filter((product)=>{
+      return product.name.toLowerCase().split(' ').join('').includes(value.toLowerCase().split(' ').join(''));
+    })  
+    setProducts(search)
+  }
 
   const logOut = ()=>{
     setIsLogin(false)
@@ -100,7 +113,7 @@ function App() {
     { loadings ? ( <div className="bg-loading">  <Spinner animation="border" variant="primary" /> </div>) : (
       <>
     <Routes>
-      <Route path='/' element={<ClientLayout logOut={logOut} user={user} isLogin={isLogin}/>}>
+      <Route path='/' element={<ClientLayout handleSearch={handleSearch} logOut={logOut} user={user} isLogin={isLogin}/>}>
           <Route index element={<HomePage productHome={productHome} />}/>
           <Route path='product' element={<ProductPage products={products} />}/>
           <Route path='product/:id' element={<DetailPage products={products} />}/>
