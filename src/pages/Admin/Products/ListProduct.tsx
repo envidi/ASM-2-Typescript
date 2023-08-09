@@ -76,14 +76,14 @@ function ListProduct({products,renderProductData}:{products:Product[],renderProd
             const priceNumber = price?.number || price
           return (
             <tr key={index}>
-            <td>{id}</td>
-            <td style={{width :'25%'}}>{name}</td>
-            <td style={{width :'15%'}}>{priceNumber.toLocaleString()  + 'VNĐ'}</td>
-            <td style={{width :'30%'}}>{desc}</td>
-            <td><img src={image} width={40}/></td>
-            <td>{category_id}</td>
-            <td><Link to={`edit/${id}`}>Edit</Link></td>
-            <td style={{width : '6%'}} onClick={()=>onHandleDelete(id)}>Delete</td>
+              <td>{id}</td>
+              <td style={{width :'25%'}}>{name}</td>
+              <td style={{width :'15%'}}>{priceNumber.toLocaleString()  + 'VNĐ'}</td>
+              <td style={{width :'30%'}}>{desc}</td>
+              <td><img src={image} width={40}/></td>
+              <td>{category_id}</td>
+              <td><Link to={`edit/${id}`}>Edit</Link></td>
+              <td style={{width : '6%'}} onClick={()=>onHandleDelete(id)}>Delete</td>
           </tr>
           )
         })}
