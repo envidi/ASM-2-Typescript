@@ -10,6 +10,7 @@ import { Outlet } from 'react-router-dom';
 import Stack from 'react-bootstrap/Stack';
 import { Link } from 'react-router-dom';
 import ThemeProvider from 'react-bootstrap/ThemeProvider'
+import Image from 'react-bootstrap/Image';
 import '../admin.css'
 import '../../breakpoint.css'
 
@@ -103,10 +104,10 @@ function AdminLayout() {
 
       <Offcanvas show={show} onHide={handleClose}>
         <Offcanvas.Header closeButton>
-          <Offcanvas.Title>Offcanvas</Offcanvas.Title>
+          <Offcanvas.Title>Envidi shop <Image src="https://res.cloudinary.com/dsmy4ogdj/image/upload/v1691390839/logo-shop-laptop_tqmezj.png" width={50} rounded /></Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body className='pt-0'>
-        <div className='mx-3 mb-3'> <i className="fa-solid fa-house"></i> Envidi shop  </div>
+        <div className='mx-3 mb-3'> <i className="fa-solid fa-house"></i> Home  </div>
       <Dropdown.Divider style={{background :'white',height:'1px', opacity: 0.5}} />
     <Accordion defaultActiveKey={['0']} alwaysOpen flush  className='bg-sidebar-admin'>
       <Accordion.Item eventKey="0" className='bg-sidebar-admin'>

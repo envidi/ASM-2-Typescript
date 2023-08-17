@@ -61,12 +61,12 @@ function AddCate({renderCateData}:{renderCateData:Function}) {
     name="basic"
     labelCol={{ span: 8 }}
     wrapperCol={{ span: 16 }}
-    style={{ width :'50%' ,background:'rgb(230, 229, 229)'}}
+    style={{ background:'rgb(230, 229, 229)'}}
     initialValues={{ remember: true }}
     onFinish={onFinish}
     onFinishFailed={onFinishFailed}
     autoComplete="off"
-    className='p-3 pt-4 border rounded'
+    className='p-sm-4 pt-md-4 p-custom-xs-5 border rounded col-lg-6 col-custom-xs-11 mx-custom-xs-auto col-sm-10 mb-custom-xs-3 '
   >
     <Form.Item<FieldType>
       label="Name"
@@ -86,7 +86,7 @@ function AddCate({renderCateData}:{renderCateData:Function}) {
 
    
 
-    <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+    <Form.Item className='breakpoint-form'>
       <ButtonAnt type="primary" htmlType="submit">
         Submit
       </ButtonAnt>

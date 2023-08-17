@@ -2,12 +2,13 @@ import {  useEffect,useState } from 'react'
 import { Button as ButtonAnt, Form, Input,  Select, } from 'antd';
 import '../../../index.css'
 import { api_cate, api_url, getData, postMethod } from '../../../ultilities';
-import checkPrice from '../../../AntdComponents/CheckPrice';
+import {checkPrice} from '../../../AntdComponents/CheckPrice';
 import PriceInput from '../../../AntdComponents/PriceInput';
 import Button  from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { Link } from 'react-router-dom';
 import { validateCustomLength } from '../../../AntdComponents/ValidateLength';
+import '../../../../breakpoint.css'
 
 type FieldType = {
   name?: string;
@@ -70,19 +71,20 @@ function AddProduct({renderProductData}:{renderProductData :Function}) {
     console.log('Failed:', errorInfo);
   };
   return (
-    <div className='mt-3 d-flex justify-content-center '>
+    <div className='mt-3 d-flex justify-content-sm-center '>
     <Form
     name="basic"
     labelCol={{ span: 8 }}
     wrapperCol={{ span: 16 }}
-    style={{ width :'50%' ,background:'rgb(230, 229, 229)'}}
+    style={{ background:'rgb(230, 229, 229)'}}
     initialValues={{ remember: true }}
     onFinish={onFinish}
     onFinishFailed={onFinishFailed}
     autoComplete="off"
-    className='p-3 pt-4 border rounded'
+    className='p-sm-4 pt-md-4 p-custom-xs-5 border rounded col-lg-6 col-custom-xs-11 mx-custom-xs-auto col-sm-10 mb-custom-xs-3 '
   >
     <Form.Item<FieldType>
+      
       label="Name"
       name="name"
       rules={[{ required: true, message: 'Please input your product name!',whitespace: true },{
@@ -136,8 +138,8 @@ function AddProduct({renderProductData}:{renderProductData :Function}) {
           </Select>
         </Form.Item>
 
-    <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-      <ButtonAnt type="primary" htmlType="submit">
+    <Form.Item className='breakpoint-form'>
+      <ButtonAnt type="primary" htmlType="submit" >
         Submit
       </ButtonAnt>
     </Form.Item>

@@ -5,6 +5,7 @@ import Col from 'react-bootstrap/Col';
 import {Product} from '../types/product'
 import { Link } from 'react-router-dom';
 import { Rate } from 'antd';
+import { ImageWithSpinner } from '.';
 import '../index.css'
 function Main({products }:{products : Product[]}) {
  
@@ -20,7 +21,9 @@ function Main({products }:{products : Product[]}) {
                            
           <Col xs={12} sm={6}  md={4} lg={3} key={index}>
           <Card className='shadow p-3 mb-5  rounded'>
-            <Card.Img variant="top" src={image} />
+            {/* <Card.Img variant="top" src={image} /> */}
+            {/* <img src={image}/> */}
+            <ImageWithSpinner src={image}/>
             <Card.Body className='pt-0 pb-0 '>
               <Rate disabled defaultValue={rate} />
               <Card.Title className='fs-6'>{name}</Card.Title>

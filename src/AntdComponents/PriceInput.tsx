@@ -13,6 +13,7 @@ interface PriceValue {
   }
 
 const PriceInput: React.FC<PriceInputProps> = ({ value = {}, onChange }) => {
+    console.log(1)
     const [number, setNumber] = useState(0);
     const triggerChange = (changedValue: { number?: number  }) => {
       onChange?.({ number, ...value, ...changedValue });

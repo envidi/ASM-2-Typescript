@@ -1,17 +1,19 @@
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import Button  from 'react-bootstrap/Button';
 import Alert from 'react-bootstrap/Alert';
 import { Link } from 'react-router-dom';
 import Table from 'react-bootstrap/Table';
 import '../../../admin.css'
 import {Product,Id} from '../../../types/product';
-import { api_url, deleteMethod } from '../../../ultilities';
+import { api_cate, api_url, deleteMethod, getData } from '../../../ultilities';
+import { Cate } from '../../../types/cate';
 import Modal from 'react-bootstrap/Modal';
 
 
 function ListProduct({products,renderProductData}:{products:Product[],renderProductData:any}) {
   const [show1, setShow1] = useState(false);
   const [show, setShow] = useState(false);
+  const [cateName, setCateName] = useState<Cate[]>([]);
   const [contentModal,setContentModal] = useState<{textStatus:string, titleModal: string; descModal: string }>({
     textStatus : 'text-danger',
     titleModal: 'Failed',
@@ -19,7 +21,10 @@ function ListProduct({products,renderProductData}:{products:Product[],renderProd
   })
   
   const [getId , setId] = useState<typeof Id>(undefined)
-
+  useEffect(()=>{
+    const handleUrl = new URL(api_cate)
+    getData(handleUrl).then((data)=>{setCateName(data)})
+  },[])
 
 
   const handleClose = () => setShow(false);
@@ -57,11 +62,11 @@ function ListProduct({products,renderProductData}:{products:Product[],renderProd
 
   return (
     <div className='container-fluid mt-3'>
-         <Table striped bordered hover size='sm' responsive="lg" className='fs-7'>
+         <Table striped bordered hover  responsive="sm" className='fs-7'>
       <thead>
         <tr>
           <th>Id</th>
-          <th>Product Name</th>
+          <th>Name</th>
           <th>Price</th>
           <th>Desc</th>
           <th>Image</th>
@@ -72,16 +77,17 @@ function ListProduct({products,renderProductData}:{products:Product[],renderProd
       <tbody>
         {products.map((pro,index)=>{
             const {id , name , price ,description : desc , image , category_id } = pro
+            const cateNames = cateName.find(cate=>cate.id == category_id )
             
             const priceNumber = price?.number || price
           return (
             <tr key={index}>
-              <td>{id}</td>
-              <td style={{width :'25%'}}>{name}</td>
+              <td >{id}</td>
+              <td className='col-sm-3'>{name}</td>
               <td style={{width :'15%'}}>{priceNumber.toLocaleString()  + 'VNĐ'}</td>
               <td style={{width :'30%'}}>{desc}</td>
               <td><img src={image} width={40}/></td>
-              <td>{category_id}</td>
+              <td >{cateNames?.name }</td>
               <td><Link to={`edit/${id}`}>Edit</Link></td>
               <td style={{width : '6%'}} onClick={()=>onHandleDelete(id)}>Delete</td>
           </tr>
