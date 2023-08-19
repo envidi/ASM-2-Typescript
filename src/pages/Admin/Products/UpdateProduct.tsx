@@ -3,7 +3,6 @@ import { Button as ButtonAnt, Form, Input, InputNumber, Select, } from 'antd';
 import { api_cate, api_url, getData,  putMethod } from '../../../ultilities';
 import { Product } from '../../../types/product';
 import { useParams } from 'react-router-dom';
-import PriceInput from '../../../AntdComponents/PriceInput';
 import Modal from 'react-bootstrap/Modal';
 import Button  from 'react-bootstrap/Button';
 import {checkPrice2} from '../../../AntdComponents/CheckPrice';
