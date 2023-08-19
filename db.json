@@ -16,7 +16,7 @@
       "description": "good",
       "image": "https://cdn.ankhang.vn/media/product/250_21221_laptop_msi_gf63_thin_11sc_664vn_00.jpg",
       "category_id": 1,
-      "rate":3
+      "rate":5
     },
     {
       "id": 3,
@@ -99,15 +99,7 @@
       "remember": true,
       "role": 1,
       "id": 2
-    },
-    {
-      "email": "envidi123@gmail.com",
-      "password": "$2a$10$dPXL/IsyAZbPnnQyj5ALzulGm/xcPbVQFnf3l/EEIozm0HgW5pCaO",
-      "username": "envidi",
-      "confirm": "12345",
-      "remember": true,
-      "id": 3
-    },
+    },   
     {
       "email": "envidi78@gmail.com",
       "password": "$2a$10$5BSeC/M89m91C46FBA4C4u7EcGNbDBUHi9hN8H9v9VQ19rWJoDceK",

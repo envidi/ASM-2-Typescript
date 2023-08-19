@@ -75,5 +75,8 @@ const signMethod = (api:any,value:any,callback:any)=>{
     .then(res=>res.json())
     .then(callback)
 }
+const jsonParse = (value:any)=>{
+    return JSON.parse(value)
+  }
 
-export { fetchApi ,getData,api_url,currentData,api_signup,api_signin,postMethod,api_cate,deleteMethod,putMethod,api_user,api_role,signMethod}
+export { fetchApi ,getData,api_url,currentData,api_signup,api_signin,postMethod,api_cate,deleteMethod,putMethod,api_user,api_role,signMethod,jsonParse}

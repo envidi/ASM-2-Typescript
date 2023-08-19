@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import '../index.css'
 import Accordion from 'react-bootstrap/Accordion';
 import ListGroup from 'react-bootstrap/ListGroup';
@@ -9,12 +9,30 @@ import '../admin.css'
 import { Outlet } from 'react-router-dom';
 import Stack from 'react-bootstrap/Stack';
 import { Link } from 'react-router-dom';
+import { api_role, getData, jsonParse } from '../ultilities';
 import ThemeProvider from 'react-bootstrap/ThemeProvider'
 import Image from 'react-bootstrap/Image';
 import '../admin.css'
 import '../../breakpoint.css'
+import { Role } from '../types/user';
+
 
 function AdminLayout() {
+  const user  = jsonParse(localStorage.getItem('user'));
+  const [roles, setRole] = useState<Role[]>([]);
+  
+  let roleUser
+  useEffect(()=>{
+    const handleUrl = new URL(api_role)
+    getData(handleUrl).then((data)=>{setRole(data)})
+   
+    // console.log(roles)
+  },[])
+  if(roles){
+
+    roleUser = roles.find(role=>role.id == user.user.role )
+  }
+  
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -36,7 +54,7 @@ function AdminLayout() {
         <Accordion.Body>
         <ListGroup>
           <ListGroup.Item className='item-hover-admin'>
-           <Link  className='link' to={'product'}>List product</Link>  
+           <Link  className='link' to={'product/list'}>List product</Link>  
           </ListGroup.Item>
           <ListGroup.Item className='item-hover-admin'>
            <Link  className='link' to={'product/add'}> Add product</Link>  
@@ -91,6 +109,8 @@ function AdminLayout() {
       </div>
       <div className="p-3">Home</div>
       <div className="p-3">Envidi shop</div>
+      <div className="p-3">{user?.user?.username || null}</div>
+      <div className="">{roleUser?.name || null}</div>
     </Stack>
       <Outlet/>
     </div>

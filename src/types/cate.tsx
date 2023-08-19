@@ -1,6 +1,7 @@
 interface Cate {
     id ?: string | number,
-    name : string,
+    name ?: string,
+    length?: number,
    
 }
 

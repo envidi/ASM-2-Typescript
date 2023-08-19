@@ -1,10 +1,10 @@
-
+import {AuthProvider, RequireAuth} from './components/'
 import {Routes,Route} from 'react-router-dom'
 import ClientLayout from './layouts/ClientLayout'
 import { api_url, getData,currentData, api_cate, api_user } from './ultilities'
 import { useEffect ,useState} from 'react'
 import {Product} from './types/product'
-import { ProductPage,HomePage,DetailPage ,SignIn,SignUp} from './pages'
+import { ProductPage,HomePage,DetailPage ,SignIn,SignUp,} from './pages'
 import { ListProduct,AddProduct,UpdateProduct } from './pages/Admin/Products'
 import Spinner from 'react-bootstrap/Spinner';
 import AdminLayout from './layouts/AdminLayout'
@@ -12,9 +12,13 @@ import { Cate } from './types/cate'
 import { User } from './types/user'
 import {ListUser,AddUser,UpdateUser} from './pages/Admin/Users'
 import {ListCate,AddCate,UpdateCate} from './pages/Admin/Categories'
+import { useAuth } from './components/AuthProvider'
+import Dashboard from './pages/Admin/Dashboard'
+
 
 
 function App() {
+  const auth = useAuth()
   const [defaultProduct,setDefaultProduct] =  useState<Product[]>([])
   
   const [loadings, setLoading] = useState(true);
@@ -33,9 +37,9 @@ function App() {
     const handleUrl1 = new URL(api_url)
     getData(handleUrl1).then((data:Product[])=>{
       setDefaultProduct(data)
-            
+     
     })
-  },[loadings])
+  },[])
   
   useEffect(()=>{
     const handleUrl = new URL(api_cate)
@@ -67,7 +71,8 @@ function App() {
 
  
   const handleSignIn = (data:any)=>{
-    if(data){
+    if(data){    
+    localStorage.setItem('user',JSON.stringify(data))
       setUser(data)
       setIsLogin(true)
     
@@ -81,7 +86,11 @@ function App() {
   }
 
   const logOut = ()=>{
+    
+    localStorage.removeItem('user');
     setIsLogin(false)
+    auth.logout()
+
   } 
   
   const renderProductData = ()=>{
@@ -93,7 +102,7 @@ function App() {
   }
   const renderCateData = ()=>{
     const handleUrl = new URL(api_cate)
-    getData(handleUrl).then((data:Product[])=>{
+    getData(handleUrl).then((data:Cate[])=>{
       setCates(data)
             
     })
@@ -112,6 +121,7 @@ function App() {
     <>
     { loadings ? ( <div className="bg-loading">  <Spinner animation="border" variant="primary" /> </div>) : (
       <>
+      <AuthProvider>
     <Routes>
       <Route path='/' element={<ClientLayout handleSearch={handleSearch} logOut={logOut} user={user} isLogin={isLogin}/>}>
           <Route index element={<HomePage productHome={productHome} />}/>
@@ -121,9 +131,10 @@ function App() {
           <Route path='signup' element={<SignUp  />}/>
           
       </Route>
-      <Route path='/admin' element={<AdminLayout/>}>
+      <Route path='/admin' element={<RequireAuth><AdminLayout /></RequireAuth>}>
+          <Route index element={<Dashboard users={users} cates={cates}  products={products} />}/>
         <Route path='product'>
-          <Route index element={<ListProduct renderProductData={renderProductData} products={products} />}/>
+          <Route path='list' element={<ListProduct renderProductData={renderProductData} products={products} />}/>
           <Route path='add' element={<AddProduct renderProductData={renderProductData}  />}/>
           <Route path='edit/:id' element={<UpdateProduct renderProductData={renderProductData}  products={products} />}/>
         </Route>
@@ -140,7 +151,7 @@ function App() {
         
       </Route>
     </Routes>
-     
+    </AuthProvider>
     </>
   )
   }

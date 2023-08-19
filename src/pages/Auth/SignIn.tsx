@@ -4,6 +4,7 @@ import Modal from 'react-bootstrap/Modal';
 import { Button as AntdButton, Checkbox, Form, Input } from 'antd';
 import { api_signin, signMethod } from '../../ultilities';
 import { validateCustomLength } from '../../AntdComponents/ValidateLength';
+import { useAuth } from '../../components/AuthProvider';
 
 
 
@@ -16,7 +17,7 @@ type FieldType = {
 };
 
 const SignIn = ({handleSignIn}:{handleSignIn: any,isLogin:boolean}) => {
- 
+  const auth = useAuth()
     const [show, setShow] = useState(false);
     const [contentModal,setContentModal] = useState<{ titleModal: string; descModal: string,textStatus: string }>({
       titleModal: 'Failed',
@@ -42,7 +43,8 @@ const SignIn = ({handleSignIn}:{handleSignIn: any,isLogin:boolean}) => {
             textStatus: 'text-success'
           })
           setShow(true)  
-          handleSignIn(datas);              
+          handleSignIn(datas);  
+          auth.login(datas)
         }
       })
   

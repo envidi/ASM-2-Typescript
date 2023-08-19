@@ -10,11 +10,21 @@ import '../index.css'
 import { useState,useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function Header({isLogin,user,logOut,handleSearch}:{isLogin:boolean,user:any,logOut:any,handleSearch:Function}) {
+function Header({isLogin,logOut,handleSearch}:{isLogin:boolean,user:any,logOut:any,handleSearch:Function}) {
   const inputRef = useRef<HTMLInputElement | null>(null); ;
 
   const navigate = useNavigate();
-  const {username,role = 3} = user?.user || 'Anonymous'
+  // const {username,role = 3} = user?.user || 'Anonymous'
+  const userLocal = localStorage.getItem('user') || null  
+  let parseUserLocal
+  if(typeof userLocal === 'string'){
+    parseUserLocal = JSON.parse(userLocal)
+    
+
+  }
+  
+  const {username = 'Anonymous', role = 3 } = parseUserLocal?.user || {}
+ 
   const [search,setSearch] = useState<string>('')
 
   const handleChange = (e:any)=>{
@@ -54,7 +64,7 @@ function Header({isLogin,user,logOut,handleSearch}:{isLogin:boolean,user:any,log
           <Nav.Link href="#action1" className='text-primary'>Contact</Nav.Link>
 
           {
-            isLogin ? (
+            isLogin || userLocal ? (
               <NavDropdown title={username} id="basic-nav-dropdown" >
               <NavDropdown.Item href="#action/3.1">Thông tin tài khoản</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">

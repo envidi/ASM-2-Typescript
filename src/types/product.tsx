@@ -10,6 +10,7 @@ interface Product {
     category_id : number,
     accessToken : string,
     rate ?: number 
+    length ?: string | number 
 }
 
 let Id: string | number | undefined

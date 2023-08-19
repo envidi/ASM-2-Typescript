@@ -8,10 +8,12 @@ import { Rate } from 'antd';
 import { ImageWithSpinner } from '.';
 import '../index.css'
 function Main({products }:{products : Product[]}) {
- 
+ console.log(products.length)
+ const isProduct = products.length !== 0
+
   return (
     <Row xs={2} md={4}  className='my-3'>
-      {products ? (
+      {isProduct || isProduct ? (
 
         <>
           {products.map((pro,index)=>{
@@ -19,10 +21,9 @@ function Main({products }:{products : Product[]}) {
         const priceNumber = price?.number || price
         return (
                            
-          <Col xs={12} sm={6}  md={4} lg={3} key={index}>
-          <Card className='shadow p-3 mb-5  rounded'>
-            {/* <Card.Img variant="top" src={image} /> */}
-            {/* <img src={image}/> */}
+          <Col xs={12} sm={6}  md={4} lg={3} key={index} className='px-2'>
+          <Card className='shadow p-3 mb-3  rounder'>
+          
             <ImageWithSpinner src={image}/>
             <Card.Body className='pt-0 pb-0 '>
               <Rate disabled defaultValue={rate} />
@@ -43,7 +44,7 @@ function Main({products }:{products : Product[]}) {
       })}
         </>
 
-      ) : ( <div>Product is not available</div>)
+      ) : ( <div style={{width : "100%",height : "50vh"}} className='fs-4 d-flex justify-content-center align-items-center'>Product is not available</div>)
 
     }
       
